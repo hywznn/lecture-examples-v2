@@ -44,7 +44,7 @@ public class DataInitializer implements CommandLineRunner {
         cartRepository.save(cart);
 
         System.out.printf(
-                "[seed] 구매자 id=%d, 장바구니 id=%d 준비 완료. 예) POST /orders?userId=%d%n",
-                buyer.getId(), cart.getId(), buyer.getId());
+                "[seed] 구매자 id=%d, 장바구니 id=%d, 상품 id=%d,%d 준비 완료. 예) POST /orders {\"userId\":%d,\"items\":[{\"productId\":%d,\"quantity\":2}]}%n",
+                buyer.getId(), cart.getId(), chair.getId(), table.getId(), buyer.getId(), chair.getId());
     }
 }
