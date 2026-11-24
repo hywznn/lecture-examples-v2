@@ -1,4 +1,4 @@
-package com.growmighty.lectures.firstday.tangledmonolith.order;
+package com.growmighty.lectures.firstday.tangledmonolith.order.application.dto;
 
 import java.math.BigDecimal;
 

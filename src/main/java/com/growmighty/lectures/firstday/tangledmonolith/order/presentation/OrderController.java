@@ -1,14 +1,16 @@
 package com.growmighty.lectures.firstday.tangledmonolith.order.presentation;
 
-import com.growmighty.lectures.firstday.tangledmonolith.order.OrderConsistencyView;
-import com.growmighty.lectures.firstday.tangledmonolith.order.OrderResult;
+import com.growmighty.lectures.firstday.tangledmonolith.order.application.dto.OrderConsistencyView;
+import com.growmighty.lectures.firstday.tangledmonolith.order.application.dto.OrderResult;
 import com.growmighty.lectures.firstday.tangledmonolith.order.application.OrderService;
+import com.growmighty.lectures.firstday.tangledmonolith.order.application.dto.OrderLine;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.ArrayList;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,7 +26,14 @@ public class OrderController {
 
     @PostMapping
     public OrderResult placeOrder(@RequestBody OrderCreationRequest request) {
-        return orderService.placeOrder(request.userId(), request.requests());
+        // HTTP요청 - 컨트롤 - 컨트롤dto - 서비스dto 작업
+        List<OrderLine> lines = new ArrayList<>();
+
+        for (OrderItemRequest item : request.requests()) {
+            OrderLine line = new OrderLine(item.productId(), item.quantity());
+            lines.add(line);
+        }
+        return orderService.placeOrder(request.userId(), lines);
     }
 
     @GetMapping("/{orderId}/inspect")

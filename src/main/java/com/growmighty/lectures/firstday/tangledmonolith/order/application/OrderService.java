@@ -1,8 +1,9 @@
 package com.growmighty.lectures.firstday.tangledmonolith.order.application;
 
-import com.growmighty.lectures.firstday.tangledmonolith.order.OrderConsistencyView;
+import com.growmighty.lectures.firstday.tangledmonolith.order.application.dto.OrderConsistencyView;
 import com.growmighty.lectures.firstday.tangledmonolith.order.domain.OrderRepository;
-import com.growmighty.lectures.firstday.tangledmonolith.order.OrderResult;
+import com.growmighty.lectures.firstday.tangledmonolith.order.application.dto.OrderResult;
+import com.growmighty.lectures.firstday.tangledmonolith.order.application.dto.OrderLine;
 import com.growmighty.lectures.firstday.tangledmonolith.order.domain.Money;
 import com.growmighty.lectures.firstday.tangledmonolith.order.domain.Order;
 import com.growmighty.lectures.firstday.tangledmonolith.order.domain.OrderItem;
@@ -30,11 +31,11 @@ public class OrderService {
     private final PaymentService paymentService;
 
     @Transactional
-    public OrderResult placeOrder(Long userId, List<OrderController.OrderItemRequest> requests) {
+    public OrderResult placeOrder(Long userId, List<OrderLine> requests) {
         User user = userService.getUser(userId);
 
         List<OrderItem> orderItems = new ArrayList<>();
-        for (OrderController.OrderItemRequest request : requests) {
+        for (OrderLine request : requests) {
             Product product = productService.decreaseStock(request.productId(), request.quantity());
             orderItems.add(OrderItem.create(product.getName(), product.getPrice(), product.getId(), request.quantity()));
         }
