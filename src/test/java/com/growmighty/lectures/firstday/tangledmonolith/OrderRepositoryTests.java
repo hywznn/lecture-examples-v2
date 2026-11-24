@@ -1,8 +1,9 @@
 package com.growmighty.lectures.firstday.tangledmonolith;
 
-import com.growmighty.lectures.firstday.tangledmonolith.order.Order;
-import com.growmighty.lectures.firstday.tangledmonolith.order.OrderItem;
-import com.growmighty.lectures.firstday.tangledmonolith.order.OrderRepository;
+import com.growmighty.lectures.firstday.tangledmonolith.order.domain.Order;
+import com.growmighty.lectures.firstday.tangledmonolith.order.domain.OrderItem;
+import com.growmighty.lectures.firstday.tangledmonolith.order.domain.OrderRepository;
+import com.growmighty.lectures.firstday.tangledmonolith.order.infrastructure.OrderRepositoryAdapter;
 import com.growmighty.lectures.firstday.tangledmonolith.product.Product;
 import com.growmighty.lectures.firstday.tangledmonolith.seller.Seller;
 import com.growmighty.lectures.firstday.tangledmonolith.user.User;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
+import org.springframework.context.annotation.Import;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -18,7 +20,9 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+
 @DataJpaTest
+@Import(OrderRepositoryAdapter.class) // 어댑터클래스를 임포트해서 사용하도록
 class OrderRepositoryTests {
 
     @Autowired

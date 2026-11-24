@@ -1,5 +1,12 @@
-package com.growmighty.lectures.firstday.tangledmonolith.order;
+package com.growmighty.lectures.firstday.tangledmonolith.order.application;
 
+import com.growmighty.lectures.firstday.tangledmonolith.order.OrderConsistencyView;
+import com.growmighty.lectures.firstday.tangledmonolith.order.domain.OrderRepository;
+import com.growmighty.lectures.firstday.tangledmonolith.order.OrderResult;
+import com.growmighty.lectures.firstday.tangledmonolith.order.domain.Money;
+import com.growmighty.lectures.firstday.tangledmonolith.order.domain.Order;
+import com.growmighty.lectures.firstday.tangledmonolith.order.domain.OrderItem;
+import com.growmighty.lectures.firstday.tangledmonolith.order.presentation.OrderController;
 import com.growmighty.lectures.firstday.tangledmonolith.payment.Payment;
 import com.growmighty.lectures.firstday.tangledmonolith.payment.PaymentService;
 import com.growmighty.lectures.firstday.tangledmonolith.product.Product;
@@ -37,7 +44,7 @@ public class OrderService {
         Payment payment = paymentService.pay(order.getTotalAmount().getValue());
         order.completePayment(payment.getId());
 
-        Order savedOrder = orderRepository.save(order);
+        Order savedOrder = orderRepository.save(order); // 어댑터의 세이브를 거치고 JPA저장소의 세이브로 호출
         return new OrderResult(savedOrder.getId());
     }
 
