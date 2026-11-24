@@ -1,4 +1,5 @@
-package com.growmighty.lectures.firstday.tangledmonolith.user;
+package com.growmighty.lectures.firstday.tangledmonolith.user.domain;
+
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
