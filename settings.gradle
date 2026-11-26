@@ -1,1 +1,6 @@
-rootProject.name = 'tangled-monolith'
+rootProject.name = 'msa=example-project'
+
+include 'common'
+include 'product-service'
+include 'payment-service'
+include 'order-service'
