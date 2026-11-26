@@ -10,6 +10,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-h2console'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 
+    // 부팅 시 config-server 에 들러 설정을 받아오는 능력
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+
+    // /actuator/refresh — "재시작 없이 설정 다시 읽기" 버튼 (Step 5 에서 사용)
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
     runtimeOnly 'com.h2database:h2'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'

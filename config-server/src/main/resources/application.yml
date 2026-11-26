@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          # Step 1 에서 만든 로컬 Git 저장소. GitHub 로 옮길 땐 이 한 줄만 https://... 로.
+          uri: file://Users/hywznn/config-repo
+          # 어느 브랜치를 읽을지 — git init 기본값이 master 인 환경이 있어 명시해 둔다.
+          default-label: main
+
+server:
+  port: 8888   # Config Server 관례 포트 (Eureka 의 8761 처럼 외워 두세요)
